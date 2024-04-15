@@ -1,11 +1,13 @@
 export default function Home() {
   return (
-    <main className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-96 h-44 bg-white rounded-lg shadow-xl px-8 py-auto flex flex-col justify-evenly">
+    <main className="h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+      <div className="w-96 h-44 bg-white rounded-lg shadow-xl px-8 py-auto flex flex-col justify-evenly dark:bg-gray-600 max-w-screen-md">
         <div className="flex w-full justify-between items-center">
           <div className="flex flex-col">
-            <span className="text-gray-500 text-sm font-light">In transit</span>
-            <h1 className="text-3xl font-bold">Coolblue</h1>
+            <span className="text-gray-500 text-sm font-light dark:text-gray-300">
+              In transit
+            </span>
+            <h1 className="text-3xl font-bold dark:text-white">Coolblue</h1>
           </div>
           <div className="bg-orange-600 rounded-full w-10 h-10 flex flex-col justify-center items-center text-white">
             <svg
@@ -25,20 +27,20 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="bg-green-500 text-white px-2 py-0.5 font-light rounded-full text-sm">
+          <span className="bg-green-500 text-white px-2 py-0.5 font-normal rounded-full text-sm cursor-pointer hover:bg-green-600 active:bg-green-700 hover:scale-110 transition-all">
             Today
           </span>
-          <span className="text-gray-600">9:30-10:30</span>
+          <span className="text-gray-600 dark:text-gray-300">9:30-10:30</span>
         </div>
         <div className="relative">
           <div className="w-full bg-slate-200 rounded-full h-3 absolute" />
           <div className="w-3/4 bg-orange-600 rounded-full h-3 absolute" />
         </div>
-        <div className="flex justify-between text-gray-400 text-xs">
+        <div className="flex justify-between text-gray-400 text-xs dark:text-gray-200">
           <span>Expected</span>
           <span>Sorting centre</span>
           <span>In transit</span>
-          <span>Delivered</span>
+          <span className="dark:text-gray-400 text-gray-300">Delivered</span>
         </div>
       </div>
     </main>
