@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  a {
+    @apply text-orange-500;
+  }
+}
+
+body {
+  @apply bg-neutral-900 text-white max-w-screen-sm mx-auto;
+}

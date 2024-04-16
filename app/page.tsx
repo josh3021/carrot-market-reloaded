@@ -1,46 +1,27 @@
-"use client";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-  }, []);
-
   return (
-    <main className="h-screen flex items-center justify-center bg-gray-100 p-5">
-      <div className="bg-white shadow-lg p-5 rounded-3xl w-full max-w-screen-sm flex flex-col space-y-2">
-        {["Nico", "Me", "You", "Yourself"].map((name, index) => (
-          <div
-            key={index}
-            className={`flex items-center gap-4 p-1 group hover:bg-gray-300 rounded-2xl cursor-pointer ${
-              isLoading && "*:animate-pulse"
-            }`}
-          >
-            <div className="size-10 rounded-full bg-sky-400" />
-            {isLoading ? (
-              <>
-                <div className="w-40 h-4 bg-gray-300 rounded-full" />
-                <div className="w-20 h-4 bg-gray-300 rounded-full" />
-              </>
-            ) : (
-              <>
-                <span className="text-lg font-medium group-hover:text-white">
-                  {name}
-                </span>
-                <div className="bg-red-500 size-6 flex items-center justify-center text-white rounded-full relative">
-                  <div className="bg-red-500 size-6 rounded-full animate-ping absolute" />
-                  <span className="z-10">{index}</span>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+    <div className="flex flex-col items-center justify-between min-h-screen p-6">
+      <div className="my-auto *:font-medium flex flex-col items-center gap-2">
+        <span className="text-9xl">🥕</span>
+        <h1 className="text-4xl">당근</h1>
+        <h2 className="text-2xl">당근마켓에 어서오세요!</h2>
       </div>
-      {/* <input /> */}
-    </main>
+      <div className="flex flex-col items-center gap-3 w-full">
+        <Link
+          href="/create-account"
+          className="w-full bg-orange-500 text-lg font-medium py-2.5 rounded-md text-center hover:bg-orange-400 active:bg-orange-300 transition-colors text-white no-underline"
+        >
+          시작하기
+        </Link>
+        <div className="flex gap-2">
+          <span>이미 계정이 있나요?</span>
+          <Link href="/login" className="hover:underline">
+            로그인
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
