@@ -16,7 +16,7 @@ export default function Home() {
         {["Nico", "Me", "You", "Yourself"].map((name, index) => (
           <div
             key={index}
-            className={`flex items-center gap-4 p-1 ${
+            className={`flex items-center gap-4 p-1 group hover:bg-gray-300 rounded-2xl cursor-pointer ${
               isLoading && "*:animate-pulse"
             }`}
           >
@@ -28,7 +28,9 @@ export default function Home() {
               </>
             ) : (
               <>
-                <span className="text-lg font-medium">{name}</span>
+                <span className="text-lg font-medium group-hover:text-white">
+                  {name}
+                </span>
                 <div className="bg-red-500 size-6 flex items-center justify-center text-white rounded-full relative">
                   <div className="bg-red-500 size-6 rounded-full animate-ping absolute" />
                   <span className="z-10">{index}</span>
