@@ -13,15 +13,24 @@ export default function CreateAccount() {
       </div>
       <form className="flex flex-col gap-3">
         <FormInput
+          name="email"
           type="email"
+          placeholder="사용하실 이메일을 입력해주세요"
+        />
+        <FormInput
+          name="name"
           placeholder="사용하실 멋진 이름을 입력해주세요!"
         />
-        <FormInput type="email" placeholder="사용하실 이메일을 입력해주세요" />
         <FormInput
+          name="password"
           type="password"
           placeholder="사용하실 비밀번호를 입력해주세요"
         />
-        <FormInput type="password" placeholder="비밀번호를 다시 입력해주세요" />
+        <FormInput
+          name="passwordConfirm"
+          type="password"
+          placeholder="비밀번호를 다시 입력해주세요"
+        />
         <FormButton text="가입하기" />
       </form>
       <SocialSignin />
