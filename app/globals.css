@@ -8,6 +8,18 @@
   }
 }
 
+@layer utilities {
+  .text-bigger-hello {
+    @apply text-3xl font-semibold;
+  }
+}
+
+@layer components {
+  .primary-btn {
+    @apply w-full bg-orange-500 text-white  font-medium  rounded-md text-center hover:bg-orange-400 active:bg-orange-300 transition-colors;
+  }
+}
+
 body {
   @apply bg-neutral-900 text-white max-w-screen-sm mx-auto;
 }
