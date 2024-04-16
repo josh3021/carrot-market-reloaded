@@ -1,19 +1,42 @@
+"use client";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+  }, []);
+
   return (
     <main className="h-screen flex items-center justify-center bg-gray-100 p-5">
-      <div className="bg-white shadow-lg p-5 rounded-3xl w-full max-w-screen-sm flex flex-col gap-2.5 md:flex-row *:outline-none has-[:invalid]:ring-red-100 has-[:invalid]:ring-offset-2 ring ring-transparent">
-        <input
-          type="email"
-          required
-          className="w-full rounded-full py-2.5 bg-gray-200 px-4 ring ring-transparent focus:ring-green-500 focus:ring-offset-2 transition-shadow duration-150 placeholder:drop-shadow-sm invalid:focus:ring-red-500 peer"
-          placeholder="이메일을 입력해주세요."
-        />
-        <span className="text-red-500 text-sm hidden peer-invalid:block font-semibold">
-          이메일은 필수항목입니다.
-        </span>
-        <button className="bg-gradient-to-tr from-cyan-500 to-purple-500 bg-opacity-50 focus:bg-opacity-100 text-white font-medium py-2 rounded-full active:scale-95 focus:scale-95 transition-transform md:px-8 peer-invalid:from-red-600 peer-invalid:to-orange-400">
-          Login
-        </button>
+      <div className="bg-white shadow-lg p-5 rounded-3xl w-full max-w-screen-sm flex flex-col space-y-2">
+        {["Nico", "Me", "You", "Yourself"].map((name, index) => (
+          <div
+            key={index}
+            className={`flex items-center gap-4 p-1 ${
+              isLoading && "*:animate-pulse"
+            }`}
+          >
+            <div className="size-10 rounded-full bg-sky-400" />
+            {isLoading ? (
+              <>
+                <div className="w-40 h-4 bg-gray-300 rounded-full" />
+                <div className="w-20 h-4 bg-gray-300 rounded-full" />
+              </>
+            ) : (
+              <>
+                <span className="text-lg font-medium">{name}</span>
+                <div className="bg-red-500 size-6 flex items-center justify-center text-white rounded-full relative">
+                  <div className="bg-red-500 size-6 rounded-full animate-ping absolute" />
+                  <span className="z-10">{index}</span>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
       </div>
     </main>
   );
