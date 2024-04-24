@@ -1,3 +1,4 @@
+import "@/lib/db";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
         <h2 className="text-2xl">당근마켓에 어서오세요!</h2>
       </div>
       <div className="flex flex-col items-center gap-3 w-full">
-        <Link href="/create-account" className="primary-btn text-lg py2.5">
+        <Link href="/create-account" className="primary-btn text-lg py-1">
           시작하기
         </Link>
         <div className="flex gap-2">

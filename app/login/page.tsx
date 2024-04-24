@@ -19,14 +19,14 @@ export default function Login() {
         <Input
           name="email"
           type="email"
-          placeholder="사용하실 이메일을 입력해주세요"
+          placeholder="이메일"
           required
           errors={state?.fieldErrors.email ?? []}
         />
         <Input
           name="password"
           type="password"
-          placeholder="사용하실 비밀번호를 입력해주세요"
+          placeholder="비밀번호"
           errors={state?.fieldErrors.password ?? []}
           required
           minLength={PASSWORD_MIN_LENGTH}
