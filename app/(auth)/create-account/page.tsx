@@ -16,9 +16,9 @@ export default function CreateAccount() {
   return (
     <div className="flex flex-col gap-10 py-8 px-6">
       <div className="flex flex-col gap-2 *:font-medium">
-        <h1 className="text-2xl">안녕하당근! 🥕</h1>
+        <h1 className="text-2xl">본 아피티! 🍷</h1>
         <h2 className="text-xl">
-          가입할 이메일 주소를 입력하고 같이 당근해요! 🥕
+          가입할 이메일 주소를 입력하고 소중한 경험을 나눠보아요!
         </h2>
       </div>
       <form action={dispatch} className="flex flex-col gap-3">

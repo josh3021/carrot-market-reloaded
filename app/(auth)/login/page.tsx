@@ -12,8 +12,8 @@ export default function Login() {
   return (
     <div className="flex flex-col gap-10 py-8 px-6">
       <div className="flex flex-col gap-2 *:font-medium">
-        <h1 className="text-2xl">로그인당근! 🥕</h1>
-        <h2 className="text-xl">다시 만나서 반가워요!</h2>
+        <h1 className="text-2xl">다시 만나서 반가워요! 🥂</h1>
+        <h2 className="text-xl">이메일만 있으면 쉽게 로그인이 가능해요.</h2>
       </div>
       <form action={dispatch} className="flex flex-col gap-3">
         <Input

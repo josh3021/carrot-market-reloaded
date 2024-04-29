@@ -4,7 +4,7 @@
 
 @layer base {
   a {
-    @apply text-orange-500;
+    @apply text-green-500;
   }
 }
 
@@ -16,7 +16,7 @@
 
 @layer components {
   .primary-btn {
-    @apply w-full bg-orange-500 text-white  font-medium  rounded-md text-center hover:bg-orange-400 active:bg-orange-300 transition-colors;
+    @apply w-full bg-green-500 hover:bg-green-400 active:bg-green-300 text-white font-medium rounded-md text-center transition-colors;
   }
 }
 
