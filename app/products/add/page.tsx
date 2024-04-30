@@ -41,7 +41,7 @@ export default function AddProduct() {
           type="file"
           id="photo"
           name="photo"
-          accept="image/*"
+          // accept="image/*"
           className="hidden"
         />
         <Input name="title" required placeholder="제목" type="text" />
