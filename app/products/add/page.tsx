@@ -12,13 +12,13 @@ import { ProductType, productSchema } from "./schema";
 
 export default function AddProduct() {
   const [preview, setPreview] = useState("");
-  const [imageId, setImageId] = useState("");
   const [uploadUrl, setUploadUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<ProductType>({
     resolver: zodResolver(productSchema),
   });
@@ -36,14 +36,17 @@ export default function AddProduct() {
 
     if (success) {
       const { id, uploadURL } = result;
-      setImageId(id);
       setUploadUrl(uploadURL);
+      setValue(
+        "photo",
+        `https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_HASH}/${id}`
+      );
     }
   }
 
   const onSubmit = handleSubmit(async (data: ProductType) => {
     // upload image to cloudflare
-    const file = data.photo;
+    console.log(file);
     if (!file) return;
     const cloudflareForm = new FormData();
     cloudflareForm.append("file", file);
@@ -53,11 +56,9 @@ export default function AddProduct() {
     });
 
     if (response.status !== StatusCodes.OK) return;
-
-    const photoUrl = `https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_HASH}/${imageId}`;
     // replace 'photo in formData
     const formData = new FormData();
-    formData.append("photo", photoUrl);
+    formData.append("photo", data.photo);
     formData.append("title", data.title);
     formData.append("description", data.description);
     formData.append("price", data.price.toString());

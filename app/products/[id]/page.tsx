@@ -10,7 +10,8 @@ interface IProductDefaultProps {
   params: { id: string };
 }
 
-async function getProduct(id: number) {
+export async function getProduct(id: number) {
+  // await new Promise((resolve) => setTimeout(resolve, 10000));
   return db.product.findUnique({
     where: {
       id,
@@ -26,7 +27,7 @@ async function getProduct(id: number) {
   });
 }
 
-async function getIsOwner(userId: number) {
+export async function getIsOwner(userId: number) {
   const session = await getSession();
   if (session.id) {
     return session.id === userId;

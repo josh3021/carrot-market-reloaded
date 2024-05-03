@@ -36,7 +36,7 @@ export default function ProductList({ initialProducts }: IProductListProps) {
           setIsLoading(false);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 1 }
     );
     if (trigger.current) {
       observer.observe(trigger.current);
@@ -50,13 +50,13 @@ export default function ProductList({ initialProducts }: IProductListProps) {
       {products.map((product) => (
         <ListProduct {...product} key={product.id} />
       ))}
-      <span
+      {/* <span
         ref={trigger}
         style={{ marginTop: `${pages + 1 * 300}vh` }}
         className="bg-green-500 mb-96 rounded-lg mx-auto px-3 py-1 disabled:bg-gray-300"
       >
         {isLoading ? "로딩중" : "더 불러오기"}
-      </span>
+      </span> */}
     </div>
   );
 }

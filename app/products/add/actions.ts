@@ -8,6 +8,7 @@ import { productSchema } from "./schema";
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 
 export async function uploadProduct(formData: FormData) {
+  console.log(formData);
   const data = {
     photo: formData.get("photo") as File,
     title: formData.get("title") as string,
