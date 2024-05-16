@@ -1,10 +1,35 @@
 "use server";
 
-import { getIsOwner, getProduct } from "@/app/products/[id]/page";
 import { CloseButton } from "@/components/btn";
+import db from "@/lib/db";
+import { getSession } from "@/lib/session";
 import { formatToWon } from "@/lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+
+async function getProduct(id: number) {
+  return db.product.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      user: {
+        select: {
+          avatar: true,
+          username: true,
+        },
+      },
+    },
+  });
+}
+
+async function getIsOwner(userId: number) {
+  const session = await getSession();
+  if (session.id) {
+    return session.id === userId;
+  }
+  return false;
+}
 
 export default async function Modal({ params }: { params: { id: string } }) {
   const { id: stringId } = params;
