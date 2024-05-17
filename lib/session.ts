@@ -1,12 +1,12 @@
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 
-interface ISesson {
+export interface ISession {
   id?: number;
 }
 
 export async function getSession() {
-  return getIronSession<ISesson>(cookies(), {
+  return getIronSession<ISession>(cookies(), {
     cookieName: "delicious-karrot",
     password: process.env.COOKIE_PASSWORD!,
   });
