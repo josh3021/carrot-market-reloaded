@@ -17,11 +17,13 @@ model User {
   avatar     String?
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  SMSTokens  SMSToken[]
-  Products   Product[]
-  Posts      Post[]
-  Comments   Comment[]
-  Likes      Like[]
+  sms_tokens SMSToken[]
+  products   Product[]
+  posts      Post[]
+  comments   Comment[]
+  likes      Like[]
+  chat_rooms ChatRoom[]
+  message    Message[]
 }
 
 model Product {
@@ -54,8 +56,8 @@ model Post {
   user_id     Int
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
-  Comments    Comment[]
-  Likes       Like[]
+  comments    Comment[]
+  likes       Like[]
 }
 
 model Like {
@@ -76,6 +78,25 @@ model Comment {
   user_id    Int
   post       Post     @relation(fields: [post_id], references: [id], onDelete: Cascade)
   post_id    Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model ChatRoom {
+  id         String    @id @default(cuid())
+  users      User[]
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  messages   Message[]
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  payload    String
+  room       ChatRoom @relation(fields: [room_id], references: [id], onDelete: Cascade)
+  room_id    String
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    Int
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
