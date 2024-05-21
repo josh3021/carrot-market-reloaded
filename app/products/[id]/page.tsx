@@ -1,17 +1,17 @@
 import db from "@/lib/db";
+import { getSession } from "@/lib/session";
 import { formatToWon } from "@/lib/utils";
 import { UserIcon } from "@heroicons/react/24/solid";
+import { unstable_cache as nextCache } from "next/cache";
 import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 interface IProductDefaultProps {
   params: { id: string };
 }
 
 async function getProduct(id: number) {
-  // await new Promise((resolve) => setTimeout(resolve, 10000));
-  return db.product.findUnique({
+  const product = await db.product.findUnique({
     where: {
       id,
     },
@@ -24,7 +24,12 @@ async function getProduct(id: number) {
       },
     },
   });
+  return product;
 }
+
+const getCachedProduct = nextCache(getProduct, ["product-detail"], {
+  tags: ["prodcut-detail"],
+});
 
 async function getIsOwner(userId: number) {
   // const session = await getSession();
@@ -40,9 +45,24 @@ export default async function ProductDetail({
   const id = Number(stringId);
   if (isNaN(id)) return notFound();
 
-  const product = await getProduct(id);
+  const product = await getCachedProduct(id);
   if (!product) return notFound();
   const isOwner = await getIsOwner(product.user_id);
+  const createChatRoom = async () => {
+    "use server";
+    const session = await getSession();
+    const room = await db.chatRoom.create({
+      data: {
+        users: {
+          connect: [{ id: product.user_id }, { id: session.id }],
+        },
+      },
+      select: {
+        id: true,
+      },
+    });
+    redirect(`/chats/${room.id}`);
+  };
   return (
     <div>
       <div className="relative aspect-square bg-neutral-600 rounded">
@@ -83,12 +103,11 @@ export default async function ProductDetail({
             삭제하기
           </button>
         ) : null}
-        <Link
-          className="bg-orange-500 px-5 py-2.5 rounded-md text-white font-semibold"
-          href={``}
-        >
-          채팅하기
-        </Link>
+        <form action={createChatRoom}>
+          <button className="bg-orange-500 px-5 py-2.5 rounded-md text-white font-semibold">
+            채팅하기
+          </button>
+        </form>
       </div>
     </div>
   );
