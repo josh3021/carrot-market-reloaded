@@ -23,3 +23,7 @@
 body {
   @apply bg-neutral-900 text-white max-w-screen-sm mx-auto;
 }
+
+.chat-box {
+  width: calc(100% - 5rem);
+}
